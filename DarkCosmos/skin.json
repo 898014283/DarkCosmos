@@ -12,12 +12,20 @@
     },
     "ValidSkinNames": {
         "darkcosmos": {
-            "class": "SkinDarkCosmos",
+            "class": "SkinTemplate",
             "args": [
                 {
                     "name": "darkcosmos",
+                    "responsive": true,
                     "template": "DarkCosmosTemplate",
-                    "bodyOnly": true
+                    "bodyOnly": true,
+                    "styles": [
+                        "skins.darkcosmos"
+                    ],
+                    "scripts": [
+                        "skins.darkcosmos.js",
+                        "skins.darkcosmos.mobile"
+                    ]
                 }
             ]
         }
@@ -36,6 +44,10 @@
         "skins.darkcosmos": {
             "targets": [ "desktop", "mobile" ],
             "class": "DarkCosmosVariablesModule",
+            "features": {
+                "content-links": true,
+                "content-links-external": true
+            },
             "styles": {
                 "resources/libraries/normalise.css": {
                     "media": "screen"
@@ -99,7 +111,6 @@
         }
     },
     "AutoloadClasses": {
-        "SkinDarkCosmos": "includes/SkinDarkCosmos.php",
         "DarkCosmosTemplate": "includes/DarkCosmosTemplate.php",
         "DarkCosmosVariablesModule": "includes/DarkCosmosVariablesModule.php"
     },
