@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 /**
  * BaseTemplate class for the DarkCosmos skin
  *
@@ -858,9 +861,13 @@ class DarkCosmosTemplate extends BaseTemplate {
                 $catHeader = 'hidden-categories';
             }
 
+            $user = $skin->getUser();
+            $showhiddencats = MediaWikiServices::getInstance()
+                ->getUserOptionsLookup()
+                ->getBoolOption( $user, 'showhiddencats' );
             if ( isset( $allCats['hidden'] ) ) {
                 $hiddenCatClass = [ 'mw-hidden-catlinks' ];
-                if ( $skin->getUser()->getBoolOption( 'showhiddencats' ) ) {
+                if ( $showhiddencats ) {
                     $hiddenCatClass[] = 'mw-hidden-cats-user-shown';
                 } elseif ( $skin->getTitle()->getNamespace() == NS_CATEGORY ) {
                     $hiddenCatClass[] = 'mw-hidden-cats-ns-shown';
