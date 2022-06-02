@@ -35,16 +35,12 @@
             "i18n"
         ]
     },
-    "config": {
-        "DarkCosmosBackdropImage": null,
-        "DarkCosmosLogo": null,
-        "DarkCosmosWordmark": null
-    },
     "ResourceModules": {
         "skins.darkcosmos": {
             "targets": [ "desktop", "mobile" ],
-            "class": "DarkCosmosVariablesModule",
+            "class": "ResourceLoaderSkinModule",
             "features": {
+                "logo": true,
                 "content-links": true,
                 "content-links-external": true
             },
@@ -111,8 +107,7 @@
         }
     },
     "AutoloadClasses": {
-        "DarkCosmosTemplate": "includes/DarkCosmosTemplate.php",
-        "DarkCosmosVariablesModule": "includes/DarkCosmosVariablesModule.php"
+        "DarkCosmosTemplate": "includes/DarkCosmosTemplate.php"
     },
     "manifest_version": 1
 }

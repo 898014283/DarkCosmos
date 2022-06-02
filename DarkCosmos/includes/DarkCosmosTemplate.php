@@ -336,6 +336,7 @@ class DarkCosmosTemplate extends BaseTemplate {
         $html = '';
         $language = $this->getSkin()->getLanguage();
         $config = $this->getSkin()->getContext()->getConfig();
+        $logos = ResourceLoaderSkinModule::getAvailableLogos( $config );
 
         $html .= Html::openElement(
             'div',
@@ -346,7 +347,7 @@ class DarkCosmosTemplate extends BaseTemplate {
             ]
         );
         if ( $part !== 'image' ) {
-            $wordmarkImage = $this->getLogoImage( $config->get( 'DarkCosmosWordmark' ), true );
+            $wordmarkImage = $this->getLogoImage( $logos['wordmark'], true );
 
             $titleClass = '';
             if ( !$wordmarkImage ) {
@@ -372,7 +373,7 @@ class DarkCosmosTemplate extends BaseTemplate {
 
         }
         if ( $part !== 'text' ) {
-            $logoImage = $this->getLogoImage( $config->get( 'DarkCosmosLogo' ) );
+            $logoImage = $this->getLogoImage( $logos['icon'] );
 
             $html .= Html::rawElement(
                 'a',
@@ -1000,7 +1001,7 @@ class DarkCosmosTemplate extends BaseTemplate {
 
         // Generate $logoData from a file upload
         if ( is_string( $logo ) ) {
-            $file = wfFindFile( $logo );
+            $file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $logo );
 
             if ( !$file || !$file->canRender() ) {
                 // eeeeeh bail, scary
